@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "96692674550",
+    "project_id": "trainable-problem-solver",
+    "storage_bucket": "trainable-problem-solver.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96692674550:android:0709c51bb8b4318adf31d7",
+        "android_client_info": {
+          "package_name": "com.vprihogenko.trainable_problem_solver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "96692674550-3hke2ko1jkdescjst625deti4dmetigc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7IS9yvbahMdhwdDhEdSTsfhZrWvc6aEA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "96692674550-3hke2ko1jkdescjst625deti4dmetigc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
