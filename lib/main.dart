@@ -11,7 +11,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'show_problem_tree.dart';
 
 /*
-about
 icon
 publish
  */
@@ -65,15 +64,26 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Text('?'),
-          onPressed: (){
-            Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const About()),
-            );
-          },
+        title: Row(
+          children: [
+            Expanded(child: Text(widget.title)),
+            IconButton(
+              icon: Container(
+                width: 32, height: 32,
+                  decoration: const BoxDecoration(
+                    color: Colors.purpleAccent,
+                    borderRadius: BorderRadius.all(Radius.circular(16))
+                  ),
+                  child: const Center(child: Text('?'))
+              ),
+              onPressed: (){
+                Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const About()),
+                );
+              },
+            ),
+          ],
         ),
-        title: Text(widget.title),
       ),
       body: SafeArea(
         minimum: const EdgeInsets.all(12),
@@ -581,6 +591,7 @@ class _MyHomePageState extends State<MyHomePage> {
       solutions.add(Solution(vSol["id"], vSol["question"], vSol["answer"], vSol["nestYes"], vSol["nestNo"]));
     }
     p.solutions = solutions;
+    p.startId = 2;
     problems.add(p);
     setState(() {});
   }
