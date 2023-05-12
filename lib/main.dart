@@ -2,14 +2,18 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:trainable_problem_solver/about.dart';
 import 'globals.dart';
 import 'resolve_problem.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'show_problem_tree.dart';
 
 /*
-full tree for solutions?
+about
+icon
+publish
  */
 
 void main() {
@@ -22,11 +26,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Trainable problem solver',
+      title: 'Mobile Expert System',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Trainable problem solver'),
+      home: const MyHomePage(title: 'Mobile Expert System'),
     );
   }
 }
@@ -61,6 +65,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Text('?'),
+          onPressed: (){
+            Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const About()),
+            );
+          },
+        ),
         title: Text(widget.title),
       ),
       body: SafeArea(
@@ -218,6 +230,9 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {});
     await glRestoreAllProblems();
     isFetching = false;
+    if (problems.isEmpty) {
+      _fillStartLocalProblem();
+    }
     setState(() {});
   }
 
@@ -267,8 +282,9 @@ class _MyHomePageState extends State<MyHomePage> {
       wl.add(GestureDetector(
         onTap: () async {
           var result = await Navigator.push(context,
-            MaterialPageRoute(builder: (context) => ResolveProblem(problem: problem,)),
+            MaterialPageRoute(builder: (context) => ResolveProblem(problem: problem, isLocal: isLocal,)),
           );
+          setState(() {});
         },
         child: Container(
           margin: const EdgeInsets.only(bottom: 6),
@@ -299,6 +315,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    IconButton(
+                      onPressed: (){
+                        _showTree(problem);
+                      },
+                      icon: const Icon(Icons.account_tree_outlined),
+                    ),
                     IconButton(
                       onPressed: (){
                         _editProblem(problem);
@@ -541,6 +563,25 @@ class _MyHomePageState extends State<MyHomePage> {
     await glRemoveProblemLocally(problem.name);
     int idx = problems.indexWhere((element) => element.name == problem.name);
     problems.removeAt(idx);
+    setState(() {});
+  }
+
+  void _showTree(Problem problem) async {
+    var result = await Navigator.push(context,
+      MaterialPageRoute(builder: (context) => ShowProblemTree(problem: problem,)),
+    );
+  }
+
+  void _fillStartLocalProblem() {
+    var solsS = '[{"id":0,"question":"","answer":"broken cable","nestYes":-1,"nestNo":-1},{"id":1,"question":"","answer":"broken video","nestYes":-1,"nestNo":-1},{"id":2,"question":"computer beeps","answer":"","nestYes":4,"nestNo":0},{"id":3,"question":"","answer":"broken memory","nestYes":-1,"nestNo":-1},{"id":4,"question":"computer has 6 long beeps ","answer":"","nestYes":3,"nestNo":6},{"id":5,"question":"","answer":"broken MB","nestYes":-1,"nestNo":-1},{"id":6,"question":"beeps number = 4","answer":"","nestYes":5,"nestNo":1}]';
+    var solsO = jsonDecode(solsS);
+    Problem p = Problem(0, 'example of broken computer problem');
+    List <Solution> solutions = [];
+    for (var vSol in solsO) {
+      solutions.add(Solution(vSol["id"], vSol["question"], vSol["answer"], vSol["nestYes"], vSol["nestNo"]));
+    }
+    p.solutions = solutions;
+    problems.add(p);
     setState(() {});
   }
 

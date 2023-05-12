@@ -5,7 +5,8 @@ import 'package:trainable_problem_solver/globals.dart';
 
 class ResolveProblem extends StatefulWidget {
   final Problem problem;
-  const ResolveProblem({Key? key, required this.problem}) : super(key: key);
+  final bool isLocal;
+  const ResolveProblem({Key? key, required this.problem, required this.isLocal}) : super(key: key);
 
   @override
   State<ResolveProblem> createState() => _ResolveProblemState();
@@ -107,6 +108,10 @@ class _ResolveProblemState extends State<ResolveProblem> {
       printD('prevSolution $prevSolution curSolution $curSolution');
       prevYesNo = 'no';
     } else {
+      if (!widget.isLocal) {
+        await glShowAlertPage(context, 'Sorry, I have not further solution.\nAnd you are in shared mode and can\'t add new nodes.\nFirst download this problem to Local');
+        return;
+      }
       var result = await Navigator.push(context,
         MaterialPageRoute(builder: (context) => EnterNewNodeData(curSolution: curSolution,)),
       );
