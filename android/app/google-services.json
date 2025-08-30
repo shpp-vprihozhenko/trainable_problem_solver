@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "96692674550",
     "project_id": "trainable-problem-solver",
-    "storage_bucket": "trainable-problem-solver.appspot.com"
+    "storage_bucket": "trainable-problem-solver.firebasestorage.app"
   },
   "client": [
     {
@@ -12,12 +12,7 @@
           "package_name": "com.vprihogenko.trainable_problem_solver"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "96692674550-3hke2ko1jkdescjst625deti4dmetigc.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
           "current_key": "AIzaSyA7IS9yvbahMdhwdDhEdSTsfhZrWvc6aEA"
@@ -25,12 +20,7 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "96692674550-3hke2ko1jkdescjst625deti4dmetigc.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

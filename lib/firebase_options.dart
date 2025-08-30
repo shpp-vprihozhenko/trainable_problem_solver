@@ -25,15 +25,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -52,7 +46,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '96692674550',
     projectId: 'trainable-problem-solver',
     authDomain: 'trainable-problem-solver.firebaseapp.com',
-    storageBucket: 'trainable-problem-solver.appspot.com',
+    storageBucket: 'trainable-problem-solver.firebasestorage.app',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
@@ -60,7 +54,7 @@ class DefaultFirebaseOptions {
     appId: '1:96692674550:android:0709c51bb8b4318adf31d7',
     messagingSenderId: '96692674550',
     projectId: 'trainable-problem-solver',
-    storageBucket: 'trainable-problem-solver.appspot.com',
+    storageBucket: 'trainable-problem-solver.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
@@ -68,8 +62,26 @@ class DefaultFirebaseOptions {
     appId: '1:96692674550:ios:4a07c354ea5ca1c3df31d7',
     messagingSenderId: '96692674550',
     projectId: 'trainable-problem-solver',
-    storageBucket: 'trainable-problem-solver.appspot.com',
-    iosClientId: '96692674550-ka38mqqldi8agjfss0do51hmt1hf7u9f.apps.googleusercontent.com',
+    storageBucket: 'trainable-problem-solver.firebasestorage.app',
     iosBundleId: 'com.vprihogenko.trainableProblemSolver',
   );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyC3S9WoyiTrve8HjqVAMJtL4heeZzdbKGY',
+    appId: '1:96692674550:ios:4a07c354ea5ca1c3df31d7',
+    messagingSenderId: '96692674550',
+    projectId: 'trainable-problem-solver',
+    storageBucket: 'trainable-problem-solver.firebasestorage.app',
+    iosBundleId: 'com.vprihogenko.trainableProblemSolver',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyCt8qRgwFhjAOMt708RlhyrW1DRrUkyzeU',
+    appId: '1:96692674550:web:666cb17cece36d40df31d7',
+    messagingSenderId: '96692674550',
+    projectId: 'trainable-problem-solver',
+    authDomain: 'trainable-problem-solver.firebaseapp.com',
+    storageBucket: 'trainable-problem-solver.firebasestorage.app',
+  );
+
 }
